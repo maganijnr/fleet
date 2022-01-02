@@ -1,13 +1,18 @@
 import {
    AUTH_USER_REQUEST,
    AUTH_USER_SUCCESS,
-   AUTH_USER_FAIL
+   AUTH_USER_FAIL,
+   GET_USER_REQUEST,
+   GET_USER_SUCCESS,
+   GET_USER_FAIL
 } from '../types'
-import {useNavigate, Redirect} from 'react-router-dom'
+
 import {client} from '../../data/client'
 
+import {getUserQuery} from '../../utils/query'
 
-const googleResponse = (response) => async dispatch => {
+
+const googleResponse = (response) =>  dispatch => {
    try{
       dispatch({type: AUTH_USER_REQUEST})
 
@@ -29,6 +34,31 @@ const googleResponse = (response) => async dispatch => {
    }
 }
 
+const getUser = () => async dispatch => {
+   dispatch({type: GET_USER_REQUEST})
+   const userInfo = localStorage.getItem('user') !== 'undefined' 
+      ? JSON.stringify(localStorage.getItem('user')) 
+      : localStorage.clear
+
+   try{
+      const query = getUserQuery(userInfo?.googleId)
+
+      const data = await client.fetch(query)
+
+      dispatch({
+         type: GET_USER_SUCCESS,
+         payload: data[0]
+      })
+
+   }catch(err){
+      dispatch({
+         type: GET_USER_FAIL,
+         payload: err.response && err.response.data.message
+      })
+   }
+}
+
 export {
-   googleResponse
+   googleResponse, 
+   getUser
 }

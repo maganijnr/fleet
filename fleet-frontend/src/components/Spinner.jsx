@@ -1,10 +1,10 @@
 import React from 'react'
-import {} from 'react-loader-spinner'
+import Loader from 'react-loader-spinner'
 
 const Spinner = () => {
    return (
-      <div>
-         <h2>Spinner</h2>
+      <div className='flex items-center justify-center my-2'>
+         <Loader type="BallTriangle" color="#FFCE47" height={50} width={50}/>
       </div>
    )
 }
