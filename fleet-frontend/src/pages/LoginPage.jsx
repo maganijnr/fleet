@@ -1,7 +1,7 @@
 import BgVideo from '../video/video.mp4'
 import {GoogleLogin} from 'react-google-login'
 import {FcGoogle} from 'react-icons/fc'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import {googleResponse} from '../redux/actions/userActions'
 import { useNavigate } from 'react-router-dom'
 
@@ -9,9 +9,13 @@ const LoginPage = () => {
    const dispatch = useDispatch()
    const navigate = useNavigate()
 
+   const userLogin = useSelector(state => state.userLogin)
+   const { user } = userLogin
    const responseGoogle = (response) =>{
       dispatch(googleResponse(response))
-      navigate('/')
+      if(user){
+         navigate('/', {replace: true})
+      }
    }
 
    return (

@@ -50,6 +50,11 @@ module.exports = {
         tetiaryColor: '#000000',
         blackOverlay: 'rgba(0, 0 ,0 ,0.7)',
       },
+      borderColor:{
+        yellow: '#FFCE47',
+        primary: '#FFF',
+        secColor: '#000',
+      },
       keyframes: {
         'slide-in': {
           '0%': {
@@ -59,6 +64,17 @@ module.exports = {
           '100%': {
             '-webkit-transform': 'translateX(0px)',
             transform: 'translateX(0px)',
+          },
+        },
+
+        'slide-out': {
+          '100%': {
+            '-webkit-transform': 'translateX(0px)',
+            transform: 'translateX(0px)',
+          },
+          's0%': {
+            '-webkit-transform': 'translateX(-200px)',
+            transform: 'translateX(-200px)',
           },
         },
 
