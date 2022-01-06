@@ -27,7 +27,8 @@ const googleResponse = (response) =>  dispatch => {
       }
 
       client.createIfNotExists(doc)
-      dispatch({type: AUTH_USER_SUCCESS, payload: doc})
+      const user = JSON.parse(localStorage.getItem('user'))
+      dispatch({type: AUTH_USER_SUCCESS, payload: user})
 
    } catch(err){
       dispatch({type: AUTH_USER_FAIL, data: err.response && err.response.data.message})
@@ -37,8 +38,8 @@ const googleResponse = (response) =>  dispatch => {
 const getUser = () => async dispatch => {
    dispatch({type: GET_USER_REQUEST})
    const userInfo = localStorage.getItem('user') !== 'undefined' 
-      ? JSON.stringify(localStorage.getItem('user')) 
-      : localStorage.clear
+      ? JSON.parse(localStorage.getItem('user')) 
+      : localStorage.clear()
 
    try{
       const query = getUserQuery(userInfo?.googleId)

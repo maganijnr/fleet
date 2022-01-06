@@ -20,12 +20,12 @@ export const userLoginReducer = (state={ user:{}, redirect: false },action) => {
    }
 }
 
-export const userInfoReducer = (state={ userInfo:{}}, action) => {
+export const userInfoReducer = (state={ userDetails:{}}, action) => {
    switch(action.type){
       case GET_USER_REQUEST:
-         return { loading: true, userInfo:{} }
+         return { loading: true, userDetails:{} }
       case  GET_USER_SUCCESS:
-         return {loading:false, userInfo:action.payload}
+         return {loading:false, userDetails:action.payload}
       case GET_USER_FAIL:
          return { loading:false, error:action.payload}
       default:

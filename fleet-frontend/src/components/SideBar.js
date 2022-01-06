@@ -2,11 +2,11 @@ import { FaHome } from "react-icons/fa"
 import { Link, NavLink } from "react-router-dom"
 const SideBar = ({user, toggleSidebar, setToggleSidebar}) => {
    const categories = [
-      {name:'Cats', categoryId:'cats'},
-      {name:'Dogs', categoryId:'dogs'},
-      {name:'Computers', categoryId:'computers'},
-      {name:'Designs', categoryId:'designs'},
-      {name:'Soccer', categoryId:'soccer'},
+      {name:'Pets', categoryId:'pets'},
+      {name:'Laptops', categoryId:'laptop'},
+      {name:'Anime', categoryId:'anime'},
+      {name:'Christianity', categoryId:'christianity'},
+      {name:'Sports', categoryId:'sports'},
       {name:'Food', categoryId:'food'},
       {name:'Horses', categoryId:'horses'},
    ]

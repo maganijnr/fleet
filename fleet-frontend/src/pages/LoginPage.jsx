@@ -1,21 +1,28 @@
 import BgVideo from '../video/video.mp4'
 import {GoogleLogin} from 'react-google-login'
 import {FcGoogle} from 'react-icons/fc'
-import { useDispatch, useSelector } from 'react-redux'
-import {googleResponse} from '../redux/actions/userActions'
 import { useNavigate } from 'react-router-dom'
+import { client } from '../data/client'
 
 const LoginPage = () => {
-   const dispatch = useDispatch()
    const navigate = useNavigate()
 
-   const userLogin = useSelector(state => state.userLogin)
-   const { user } = userLogin
    const responseGoogle = (response) =>{
-      dispatch(googleResponse(response))
-      if(user){
-         navigate('/', {replace: true})
+      localStorage.setItem('user', JSON.stringify(response.profileObj))
+
+      const {name,imageUrl,googleId} = response.profileObj
+
+      const doc = {
+         _id:googleId,
+         _type: "user",
+         userName: name,
+         image: imageUrl
       }
+
+      client
+         .createIfNotExists(doc)
+         .then(() => navigate('/', {replace: true}))
+         .catch(err => err)
    }
 
    return (
