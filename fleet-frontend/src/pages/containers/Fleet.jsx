@@ -1,29 +1,89 @@
 import {useState, useEffect} from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { findFleet } from '../../redux/actions/fleetActions'
 import { useParams } from 'react-router-dom'
+import MasonryLayout from '../../components/MasonryLayout'
 import Spinner from '../../components/Spinner'
+import { client } from '../../data/client'
 
-const Fleet = () => {
-   const dispatch = useDispatch()
-   const [fleets, setfleets] = useState([])
-   const searchFleet = useSelector(state => state.searchFleet)
+const Fleet = ({loading, setLoading}) => {
+   const [fleet, setfleet] = useState([])
    const {categoryId} = useParams()
-   const {data, loading} = searchFleet
 
    useEffect(() => {
+      const filterQuery = `*[_type == "fleet" && category match '${categoryId}' || title match '${categoryId}*' || about match '${categoryId}*' ]{
+         image{
+            asset -> {
+               url,
+            }
+         },
+         title,
+         about,
+         destination,
+         _id,
+         postedBy -> {
+            _id,
+            userName,
+            image
+         },
+         save[]{
+            _key,
+            postedBy -> {
+               _id,
+               userName,
+               image
+            },
+         }
+      }`
+
+      const allQuery = `*[_type == "fleet"] | order(_createdAt desc){
+         image{
+            asset -> {
+               url,
+            }
+         },
+         title,
+         about,
+         destination,
+         _id,
+         postedBy -> {
+            _id,
+            userName,
+            image
+         },
+         save[]{
+            _key,
+            postedBy -> {
+               _id,
+               userName,
+               image
+            },
+         }
+      }`
+
+      setLoading(true)
+
       if(categoryId){
-         dispatch(findFleet(categoryId))
-         setfleets(data)
-      } else{
-         setfleets(data)
+         client.fetch(filterQuery).then((data) => {
+            setfleet(data)
+            setLoading(false)
+            console.log(data)
+         })
+      }else{
+         client.fetch(allQuery).then((data) => {
+            setfleet(data)
+            setLoading(false)
+            console.log(data)
+         })
       }
-   }, [categoryId, dispatch, data])
-   
+   }, [categoryId, setLoading])
+
    if(loading) return <Spinner/>
+
+   console.log(categoryId)
    return (
       <div>
-         <h2 className='text-yellow'>Fleet</h2>
+         {
+            fleet && <MasonryLayout fleet={fleet}/>
+         }
       </div>
    )
 }

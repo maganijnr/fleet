@@ -1,10 +1,9 @@
-export const getUserQuery = userInfo => {
-   const query = `*[_type == "user" && _id ${userInfo?.googleId}]`
-
+export const getUserQuery = (userId) => {
+   const query = `*[_type == "user" && _id == ${userId}]`
    return query
 }
 
-export const searchFleetQuery = searchItem => {
+export const searchFleetQuery = (searchItem) => {
    const query = `*[_type == "fleet" && title match '${searchItem}*' || about match '${searchItem}*']{
       title,
       about, 
