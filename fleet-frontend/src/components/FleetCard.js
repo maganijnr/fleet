@@ -39,12 +39,13 @@ const FleetCard = ({post:{image, destination, postedBy, _id, title, save}}) => {
       }
    }
 
+
    return (
       <div 
          className='m-5 relative cursor-pointer w-auto rounded-lg overflow-hidden'
          onMouseEnter={()=> setPostHover(true)}
          onMouseLeave={() => setPostHover(false)}
-         onClick={() => navigate(`fleet-detail/${_id}`, {replace: true})}
+         onClick={() => navigate(`/fleet-detail/${_id}`, {replace: true})}
       >
          <img 
             src={urlFor(image).width(300).url()} 
