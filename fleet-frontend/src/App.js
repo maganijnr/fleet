@@ -1,22 +1,23 @@
-import { BrowserRouter as Router, Routes, Route, useNavigate} from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate} from 'react-router-dom'
 import AppContainer from './pages/AppContainer'
 import LoginPage from './pages/LoginPage'
-import { useDispatch, useSelector } from 'react-redux'
+import { useEffect } from 'react'
 
 const App = () => {
-  const userLogin = useSelector(state => state.userLogin)
-  const { redirect, user } = userLogin
+  // useEffect(() => {
+  //   const User = localStorage.getItem('user') !== 'undefined' ? JSON.parse(localStorage.getItem('user')) : localStorage.clear();
 
+  //   if (!User) Navigate('/login');
+  // }, []);
 
   return (
     <Router>
       <Routes>
-        <Route path='login' element={<LoginPage/>}/>
-        <Route path="/*" element={<AppContainer/>}/>
+        <Route path="login" element={<LoginPage />} />
+        <Route path="/*" element={<AppContainer />} />
       </Routes>
     </Router>
-    
-  )
-}
+  );
+};
 
-export default App
+export default App;

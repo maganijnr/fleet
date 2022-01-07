@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom'
 import { FaPlus, FaSearch } from 'react-icons/fa'
 
 const NavBar = ({user, searchItem, setSearchItem}) => {
-   if(!user) return null
+   // if(!user) return null
+   const userInfo = localStorage.getItem('user') !== 'undefined' ? JSON.parse(localStorage.getItem('user')) : localStorage.clear();
    return (
       <div className='w-full md:w-656 md:mx-auto h-16 flex items-center justify-between p-1'>
          <div className='flex items-center justify-evenly h-full w-full'>
@@ -16,21 +17,22 @@ const NavBar = ({user, searchItem, setSearchItem}) => {
                placeholder='Search...'
             />
          </div>
-         {user && <div className='flex items-center'>
+         {userInfo ? <div className='flex items-center'>
             <Link to="/" className='hidden mr-2 md:flex'>
                <img src={user?.image} alt="user" className="rounded-full w-14 h-14 mr-2"/>
             </Link>
             <Link to="/create-pin">
                <FaPlus fontSize={30}/>
             </Link>
-         </div>}
-         {
-            !user && <div>
+         </div> : null
+         }
+         {/* {
+            !userInfo && <div>
             <Link to="/create-pin">
                <h2>Login</h2>
             </Link>
          </div>
-         }
+         } */}
          
       </div>
    )

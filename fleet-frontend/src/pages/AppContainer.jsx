@@ -46,10 +46,11 @@ const AppContainer = () => {
           <Link to="/">
             <h2 className="font-bold text-5xl">Fleet</h2>
           </Link>
-
-          <Link to={`user-profile/${user?._id}`}>
+          {
+            userInfo ? <Link to={`user-profile/${user?._id}`}>
             <img src={user?.image} alt="user" className="w-10 h-10 rounded-full"/>
-          </Link>
+          </Link> : <Link to='/login' className='p-2 font-bold text-lg'>Login</Link>
+          }
 
           {
             toggleSidebar && (
