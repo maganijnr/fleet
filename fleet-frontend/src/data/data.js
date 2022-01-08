@@ -5,6 +5,7 @@ export const categories = [
    {name:'Christianity', categoryId:'christianity'},
    {name:'Sports', categoryId:'sports'},
    {name:'Food', categoryId:'food'},
+   {name:'Cake', categoryId:'cake'},
    {name:'Clothes', categoryId:'clothes'},
    {name:'Shoes', categoryId:'shoes'},
    {name:'Books', categoryId:'books'},

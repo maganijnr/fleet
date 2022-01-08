@@ -4,11 +4,7 @@ import LoginPage from './pages/LoginPage'
 import { useEffect } from 'react'
 
 const App = () => {
-  // useEffect(() => {
-  //   const User = localStorage.getItem('user') !== 'undefined' ? JSON.parse(localStorage.getItem('user')) : localStorage.clear();
 
-  //   if (!User) Navigate('/login');
-  // }, []);
 
   return (
     <Router>
