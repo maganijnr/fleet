@@ -8,6 +8,7 @@ import { useState } from 'react'
 
 const Fleets = ({user, loading, setLoading}) => {
    const [searchItem, setSearchItem] = useState('')
+
    return (
       <div className='p-2'>
          <NavBar 
@@ -20,7 +21,7 @@ const Fleets = ({user, loading, setLoading}) => {
             <Route path='/category/:categoryId' element={<Fleet loading={loading} setLoading={setLoading}/>}/>
             <Route path='/fleet-detail/:fleetId' element={<FleetDetail user={user && user}/>}/>
             <Route path='/create-pin' element={<CreateFleet user={user && user}/>}/>
-            <Route path='/search' element={<SearchFleet/>}/>
+            <Route path='/search' element={<SearchFleet searchItem={searchItem} setSearchItem={setSearchItem}/>}/>
          </Routes>
       </div>
    )

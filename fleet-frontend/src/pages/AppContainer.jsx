@@ -14,6 +14,7 @@ const AppContainer = () => {
   const [toggleSidebar, setToggleSidebar] = useState(false)
   const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(false)
+  
 
   const scrollRef = useRef()
   const userInfo = localStorage.getItem('user') !== 'undefined' 
