@@ -8,7 +8,6 @@ const SearchFleet = ({searchItem, setSearchItem}) => {
    const [loading, setLoading] = useState(false);
 
    useEffect(() => {
-      
       if(searchItem !== ""){
          setLoading(true);
 
