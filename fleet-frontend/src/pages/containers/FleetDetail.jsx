@@ -190,15 +190,8 @@ const FleetDetail = ({user}) => {
                </div>
                <div className='my-1 p-1 text-left flex flex-col items-start'>
                   <Link to={`/user-profile/${userInfo?.googleId}`}>
-                     <h2 className='font-medium text-lg'>Created By: {userInfo?.name} </h2>
+                     <h2 className='font-medium text-lg'>Created By: {fleetDetail?.postedBy?.userName} </h2>
                   </Link>
-                  <a 
-                     rel="nonreferrer"
-                     target="_blank" 
-                     href={`${fleetDetail?.destination}`} 
-                     className='text-secColor font-semibold bg-mainColor p-1 rounded-lg'>
-                     Destination
-                  </a>  
                </div>
                <div className='my-1 p-1'>
                   <h2 className="mt-5 text-2xl">Comments</h2>

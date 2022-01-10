@@ -69,7 +69,7 @@ const AppContainer = () => {
           }
         </div>
       </div>
-      <div className='p-2 flex-1 h-screen overflow-y-scroll md:pt-0 relative' ref={scrollRef} >
+      <div className='p-2 flex-1 h-screen overflow-y-scroll md:pt-0 relative bg-zinc-200' ref={scrollRef} >
         <Routes>
           <Route path="/user-profile/:userId" element={<UserProfile />} />
           <Route path="/*" element={<Fleets user={user && user} loading={loading} setLoading={setLoading}/>} />

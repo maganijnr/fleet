@@ -22,7 +22,7 @@ const NavBar = ({user, searchItem, setSearchItem}) => {
             />
          </div>
          {userInfo ? <div className='flex items-center'>
-            <Link to="/" className='hidden mr-2 md:flex'>
+            <Link to={`/user-profile/${user?._id}`} className='hidden mr-2 md:flex'>
                <img src={user?.image} alt="user" className="rounded-full w-14 h-14 mr-2"/>
             </Link>
             <Link to="/create-pin">
@@ -30,13 +30,7 @@ const NavBar = ({user, searchItem, setSearchItem}) => {
             </Link>
          </div> : null
          }
-         {/* {
-            !userInfo && <div>
-            <Link to="/create-pin">
-               <h2>Login</h2>
-            </Link>
-         </div>
-         } */}
+         
          
       </div>
    )

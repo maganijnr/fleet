@@ -39,6 +39,9 @@ const UserProfile = () => {
                   _id, userName, image
                }
             },
+            postedBy -> {
+               _id, userName, image
+            },
             title, 
             about,
             category
@@ -66,7 +69,10 @@ const UserProfile = () => {
             },
             title, 
             about,
-            category
+            category,
+            postedBy -> {
+               _id, userName, image
+            },
          }`
          
          client
