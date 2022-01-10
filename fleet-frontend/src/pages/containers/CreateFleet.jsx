@@ -9,7 +9,6 @@ import { client } from '../../data/client'
 const CreateFleet = ({user}) => {
    const [title, setTitle] = useState('')
    const [about, setAbout] = useState('')
-   const [destination, setDestination] = useState('')
    const [category, setCategory] = useState()
    const [imageAsset, setImageAsset] = useState();
    const [wrongImageType, setWrongImageType] = useState(false)
@@ -42,12 +41,11 @@ const CreateFleet = ({user}) => {
    }
 
    const savePin = () => {
-      if(title && about && destination && imageAsset?._id && category){
+      if(title && about  && imageAsset?._id && category){
          const doc = {
             _type: 'fleet',
             title,
             about,
-            destination,
             image : {
                _type: 'image',
                asset: {
@@ -154,13 +152,6 @@ const CreateFleet = ({user}) => {
                placeholder="Tell everyone what your Fleet is about"
                className="outline-none text-base sm:text-lg border-b-2 border-gray-200 p-2"
             />
-            <input
-               type="url"
-               vlaue={destination}
-               onChange={(e) => setDestination(e.target.value)}
-               placeholder="Add a destination link (link can be IG post link)"
-               className="outline-none text-base sm:text-lg border-b-2 border-gray-200 p-2"
-            />
             <div className="flex flex-col">
                <div>
                   <p className="mb-2 font-semibold text:lg sm:text-xl">Choose Fleet Category</p>
@@ -184,7 +175,7 @@ const CreateFleet = ({user}) => {
                      onClick={savePin}
                      className="text-secColor font-semibold bg-mainColor p-1 rounded-lg w-28 outline-none"
                   >
-                     Save Pin
+                     Save Fleet
                   </button>
                </div>
             </div>

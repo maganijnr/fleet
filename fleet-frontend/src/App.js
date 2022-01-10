@@ -4,15 +4,26 @@ import LoginPage from './pages/LoginPage'
 import { useEffect } from 'react'
 
 const App = () => {
+  const navigate = useNavigate()
 
+  const redirect = () => {
+    const userInfo = localStorage.getItem('user') !== 'undefined' 
+      ? JSON.parse(localStorage.getItem('user') ) 
+      : localStorage.clear()
 
+    if(!userInfo){
+      navigate('/login')
+    }
+  }
+
+  useEffect(() => {
+    redirect()
+  },[])
   return (
-    <Router>
-      <Routes>
-        <Route path="login" element={<LoginPage />} />
-        <Route path="/*" element={<AppContainer />} />
-      </Routes>
-    </Router>
+    <Routes>
+      <Route path="login" element={<LoginPage />} />
+      <Route path="/*" element={<AppContainer />} />
+    </Routes>
   );
 };
 

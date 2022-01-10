@@ -1,5 +1,6 @@
 export const categories = [
    {name:'Pets', categoryId:'pets'},
+   {name:'Animals', categoryId:'animals'},
    {name:'Laptops', categoryId:'laptop'},
    {name:'Anime', categoryId:'anime'},
    {name:'Christianity', categoryId:'christianity'},

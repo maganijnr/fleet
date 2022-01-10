@@ -10,12 +10,13 @@ const LoginPage = () => {
    const responseGoogle = (response) =>{
       localStorage.setItem('user', JSON.stringify(response.profileObj))
 
-      const {name,imageUrl,googleId} = response.profileObj
+
+      const {imageUrl,googleId, givenName, familyName} = response.profileObj
 
       const doc = {
          _id:googleId,
          _type: "user",
-         userName: name,
+         userName: givenName + " " + familyName,
          image: imageUrl
       }
 
